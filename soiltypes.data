@@ -1,0 +1,6 @@
+name, moisture retention, mineral retention, base nutrients, nutrient availability, base vitality
+
+Loamy Soil, 0.5, 0.9, 200, 1, 8
+Sandy Soil, 0.1, 0.6, 50, 0.5, 2
+Clay Soil, 0.8, 0.8, 150, 0.8, 5
+Dead Soil, 0.6, 0.8, 10, 0.8, 0

@@ -1,0 +1,27 @@
+tea
+tool: pot, teaset
+1+ herb, fruit, spice
+water
+
+herbal tea
+base: tea
+1+ herb
+water
+
+camomille tea
+base: herbal tea
+1+ camomille
+water
+
+stew
+tool: pot, stewpot
+1+ any
+water
+
+farmer's stew
+base: stew
+2+ vegetable
+* herb
+* spice
+water
++recovery

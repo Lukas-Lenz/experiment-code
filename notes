@@ -1,0 +1,46 @@
+growth
+- increases naturally, needs to be kept down
+- can be in/decreased by forest actions
+
+chaos
+- falls naturally, needs to be brought up
+- how to calculate deviation from status quo?
+- increased by progressing quest and story events
+
+progress
+- random within a range
+- at 0 if mariya dies
+
+calculated every frame:
+
+- routes
+- movement
+- animation
+
+
+calculated every clock tick:
+- villager decisions
+
+calculated every hour:
+- field tiles
+
+calculated every day:
+- chaos events
+- growth events
+
+
+---
+crop factors:
+
+soil
+- mineral balance
+- plant enviornment history
+- moisture
+- 
+
+plant:
+- soil minerals
+- soil type
+- moisture stored
+- 
+
