@@ -1,4 +1,4 @@
-#include "Actor.cpp"
+#include "UpdateObject.cpp"
 
 #include <memory>
 #include <vector>
@@ -18,7 +18,7 @@
         }
 
         if(clock_tick) {
-
+y
             progress_clock();
             clock_queue.tick();
 
@@ -34,29 +34,35 @@ class UpdateQueue {
 
     public: 
 
-    void add(const Actor &actor);
+    void add(const UpdateObject &UpdateObject);
+    void remove(const UpdateObject &UpdateObject);
     void tick(const State &state);
+    void update(const State &state);
 
     private:
 
-    std::vector<std::weak_ptr<Actor>> update_objects;
+    Time lastUpdate;
+    std::vector<std::weak_ptr<UpdateObject>> update_objects;
 
 }
 
 
-void UpdateQueue::add(const Actor &actor) {
+void UpdateQueue::add(const UpdateObject &UpdateObject) {
 
 }
 
-void UpdateQueue::tick(const State &state) {
+void UpdateQueue::update(const State &state) {
 
+    //get time difference
+    Time advanceBy = state.timeSince(lastUpdate);
+    lastUpdate = state;
 
-    for(auto actor_ptr : update_objects) {
+    for(auto updateObject_ptr : update_objects) {
     
         // check if the object still exists
 
 
-        actor.update(state);
+        updateObject_ptr->update(state, advanceBy);
     }
 
 }

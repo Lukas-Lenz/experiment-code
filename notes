@@ -1,3 +1,18 @@
+    tick          minute            hour             day
+                              nutrient spread
+                                  moisture
+                             changing appearance
+                             
+                             
+ need captured in state:
+ status of field
+
+tick-updates    clock-updates   reload-updates
+animation           field           events
+routing           npc decisions npc personalities 
+                (updateobjects)  relationships
+                                    values
+
 growth
 - increases naturally, needs to be kept down
 - can be in/decreased by forest actions
@@ -10,6 +25,10 @@ chaos
 progress
 - random within a range
 - at 0 if mariya dies
+
+order
+- increased by actions
+- decreases naturally
 
 calculated every frame:
 
@@ -30,7 +49,7 @@ calculated every day:
 
 
 ---
-crop factors:
+crop fUpdateObjects:
 
 soil
 - mineral balance

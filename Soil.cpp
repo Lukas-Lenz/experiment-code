@@ -1,4 +1,4 @@
-#include "Actor.cpp"
+#include "UpdateObject.cpp"
 
 #include <map>
 #include <memory>
@@ -25,7 +25,7 @@ public:
 
 };
 
-class Soil : public Actor {
+class Soil : public UpdateObject {
 
 public:
 
@@ -58,12 +58,4 @@ void Soil::update(const State &state) {
     moisture *= moisture_retention;
 
 }
-
-
-
-
-
-
-
-
 
