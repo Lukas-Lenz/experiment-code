@@ -3,32 +3,9 @@
 #include <memory>
 #include <vector>
 
-{
-
-    const State state = captureState();
-
-    UpdateQueue frame_queue;
-    UpdateQueue clock_queue;
-    UpdateQueue day_queue;
-
-    while() {
-
-        if(frame_tick) {
-
-        }
-
-        if(clock_tick) {
-y
-            progress_clock();
-            clock_queue.tick();
-
-        }
-
-
-    }
-
-}
-
+enum class UpdateTypes {
+    TICK, CLOCK, DAY
+};
 
 class UpdateQueue {
 
@@ -36,15 +13,14 @@ class UpdateQueue {
 
     void add(const UpdateObject &UpdateObject);
     void remove(const UpdateObject &UpdateObject);
-    void tick(const State &state);
-    void update(const State &state);
+    void update(const State &state, const UpdateTypes type, const int steps = 1);
 
     private:
 
     Time lastUpdate;
     std::vector<std::weak_ptr<UpdateObject>> update_objects;
 
-}
+};
 
 
 void UpdateQueue::add(const UpdateObject &UpdateObject) {

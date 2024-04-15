@@ -15,30 +15,32 @@ public:
 
     const std::string name;
 
-    const float moisture_retention;
-    const float mineral_retention;
+    const float moisture_spread;
+    const float mineral_spread;
 
-    const float base_nutrients;
+    const float moisture_loss;
+    const float mineral_loss;
+
+    const float base_minerals;
     const float nutrient_availability;
 
     const float base_vitality;
 
 };
 
-class Soil : public UpdateObject {
+class Soil {
 
 public:
 
-    void update(const State &state) override;
-    void change_moisture(const float change);
-    void change_minerals(const float change);
-    void change_vitality(const float change);
-    void change_ph(const float change);
+    void changeMoisture(const float change);
+    void changeMinerals(const float change);
+    void changeVitality(const float change);
+    void changePH(const float change);
 
     float getVitality() const;
     float getMoisture() const;
     float getMinerals() const;
-    float getPh() const;
+    float getPH() const;
 
 private:
 

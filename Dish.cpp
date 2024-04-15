@@ -1,19 +1,20 @@
 #include <string>
 #include <vector>
-
-
+#include <memory>
 
 class Dish {
 
 
     bool check_recipe(const std::string tool, const std::vector<std::string> ingredients) const;
 
-
     using IngredientList = std::vector<std::tuple<std::string, std::string>>;
 
     const std::string name;
     const std::vector<std::string> tools;
     const IngredientList ingredients;
+
+    std::vector<std::shared_ptr<Dish>> derived_dishes;
+    std::shared_ptr<Dish> base_dish;
 
 };
 
@@ -50,5 +51,11 @@ void load_dishes(){
     for(Dish d : recipes) {
 
     }
+
+}
+
+Dish recipeMatch(){
+
+    for()
 
 }
