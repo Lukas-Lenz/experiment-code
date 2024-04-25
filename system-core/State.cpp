@@ -1,21 +1,7 @@
 #include <vector>
-#include "Soil.cpp"
+#include "Soil.h"
 
-class Time {
 
-    public:
-
-        Time(const int day, const int hour, const int minutes);
-        Time timeSince(const Time &pastTime) const;
-        void tick();
-
-    private:
-
-        int day;
-        int hour;
-        int minutes;
-
-};
 
 Time::Time(const int day, const int hour, const int minutes) : day{day}, hour{hour}, minutes{minutes} {}
 
@@ -56,19 +42,7 @@ void Time::tick() {
 
 }
 
-class GameClock {
 
-    public:
-        GameClock();
-        GameClock(const Time &time);
-        GameClock(const int day, const int hour, const int minutes);
-        void tick();
-        Time getTime() const;
-
-    private:
-        Time currentTime;
-
-};
 
 GameClock::GameClock() : currentTime{0, 0, 0} {}
 
@@ -80,26 +54,7 @@ void GameClock::tick() { currentTime.tick(); }
 
 Time GameClock::getTime() const { return currentTime; }
 
-struct State {
 
-    //int chaosChange;
-    //int chaosLevel;
-
-    //int growthChange;
-    //int growthLevel;
-
-    //int progressChange;
-    //int progressLevel;
-
-    //int orderChange;
-    //int orderLevel;
-
-    Time time;
-    std::vector<std::vector<Soil>> field;
-
-    Time timeSince(const State &pastState) const;
-
-};
 
 Time State::timeSince(const State &pastState) const {
     return this->time.timeSince(pastState);

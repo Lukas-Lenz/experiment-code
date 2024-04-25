@@ -1,33 +1,11 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
 
-enum class TileType {
-    NONE, FOREST, GRASS, SOIL, WALL, PATH 
-};
+#include "Map.h";
 
+Map::Map(const std::string name, const size_t width, const size_t height) : name{name}, width{width}, height{height}, tiles{height, {width, TileType::NONE}} {};
 
-const std::string maps_base_path = "";
-
-class Map
-{
-    public:
-
-    Map(const std::string name, const size_t width, const size_t height) : name{name}, width{width}, height{height}, tiles{height, {width, TileType::NONE}} {};
-
-    void setTile(const int x, const int y, const TileType tileType);
-
-    private:
-
-    std::vector<std::vector<TileType>> tiles;
-
-    std::string name;
-    const size_t width;
-    const size_t height;
-
-};
 
 void Map::setTile(const int x, const int y, const TileType tileType) {
 

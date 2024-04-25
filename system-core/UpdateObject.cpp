@@ -1,22 +1,10 @@
-#include <string>
 #include <memory>
 
-#include "State.cpp"
+#include "UpdateObject.h"
 
-class UpdateObject {
 
-public:
+const int UpdateObject::getID() const { return UpdateObjectID; }
 
-    virtual void update(const State &state, const Time &advanceBy) = 0;
+const std::string UpdateObject::getName() const { return UpdateObjectName; }
 
-    const int getID() const { return UpdateObjectID; }
-    const std::string getName() const { return UpdateObjectName; }
-    void setName(const std::string &name) { UpdateObjectName = name; }
-
-protected:
-
-    const int UpdateObjectID;
-    std::string UpdateObjectName;
-
-};
-
+void UpdateObject::setName(const std::string &name) { UpdateObjectName = name; }
