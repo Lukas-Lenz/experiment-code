@@ -1,0 +1,31 @@
+{
+"tea" : [
+    "base": "root",
+    "tool": ["pot", "teaset"],
+    "ingredients": [
+        //{"t": "herb", "q": "*"}, 
+        //{"t": "fruit, "q": "*"}, 
+        //{"t": "spice", "q": "*"},
+        {"t": ["herb", "fruit", "spice"], "q": "1+"}
+        {"t": "water", "q": "1+"}
+        ],
+    "effects": [
+        {"t": "health%", "q": 1}
+        ]    
+    ]
+},
+
+{
+"wild tea": [
+
+    "base": "tea",
+    "ingredients": [
+        {"t": "nettle", "q": "1+"},
+        {"t": "dandelion", "q": "1+"},
+        ],
+    "effects": [
+        ]
+
+    ]
+}
+

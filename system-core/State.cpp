@@ -56,12 +56,12 @@ void Time::tick() {
 
 }
 
-class Clock {
+class GameClock {
 
     public:
-        Clock();
-        Clock(const Time &time);
-        Clock(const int day, const int hour, const int minutes);
+        GameClock();
+        GameClock(const Time &time);
+        GameClock(const int day, const int hour, const int minutes);
         void tick();
         Time getTime() const;
 
@@ -70,17 +70,17 @@ class Clock {
 
 };
 
-Clock::Clock() : currentTime{0, 0, 0} {}
+GameClock::GameClock() : currentTime{0, 0, 0} {}
 
-Clock::Clock(const Time &time) : currentTime{time} {}
+GameClock::GameClock(const Time &time) : currentTime{time} {}
 
-Clock::Clock(const int day, const int hour, const int minutes) : currentTime{day, hour, minutes} {}
+GameClock::GameClock(const int day, const int hour, const int minutes) : currentTime{day, hour, minutes} {}
 
-void Clock::tick() { currentTime.tick(); }
+void GameClock::tick() { currentTime.tick(); }
 
-Time Clock::getTime() const { return currentTime; }
+Time GameClock::getTime() const { return currentTime; }
 
-class State {
+struct State {
 
     //int chaosChange;
     //int chaosLevel;

@@ -1,0 +1,26 @@
+{
+"stew": [
+    "base": "root",
+    "tool": ["pot", "stewpot"],
+    "ingredients": [
+        {"t":"any", "q":"1+"},
+        {"t":"water", "q":"*"}
+        ]
+    ]
+},
+
+{
+"farmer's stew": [
+    "base": "stew",
+    "ingredients": [
+        {"t": "vegetable", "q": "2+"},
+        {"t": "herb", "q": "1+"},
+        {"t": "spice", "q": "*"},
+        {"t": "water", "q": "*"}
+    ],
+    "effects": [
+        {"t": "energy","q": 200}
+    ]
+
+    ]
+}

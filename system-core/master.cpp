@@ -1,13 +1,16 @@
 #include "State.cpp"
 
+#include <chrono>
+
+using clock = std::chrono::steady_clock;
 
 using MS_PER_UPDATE = 300;
-using UPDATES_PER_CLOCK_TICK = 20;
+using UPDATES_PER_CLOCK_TICK = 200;
 
 
 State captureState() {
 
-
+    return State{};
 
 }
 
@@ -42,16 +45,17 @@ int main() {
     UpdateQueue clockQueue;
 
 
-    double lastTime = getCurrentTime();
+    auto lastTime = clock::now();
     double lag = 0.0;
 
     while(!end) {
 
-        double current = getCurrentTime();
-        double elapsed = current - lastTime;
+        auto current = clock::now();
+
+        std::chrono::milliseconds elapsed = current - lastTime;
         lastTime = current;
 
-        lag += elapsed;
+        lag += elapsed.count();
         
 
         // Input processing here

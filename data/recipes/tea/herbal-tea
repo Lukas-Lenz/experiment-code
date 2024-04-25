@@ -1,0 +1,58 @@
+{
+"herbal tea" : [
+    "base": "tea",
+    "ingredients": [
+        {"t": "herb", "q": "1+"},
+        {"t": "water", "q": "1+"}
+        ],
+    "effects": [
+        {"t": "health%", "q": 5}
+        ] 
+    ]
+},
+
+{
+"chamomile tea": [
+    "base": "herbal tea",
+    "ingredients": [
+        {"t": "chamomile", "q": "1+"},
+        {"t": "water", "q": "1+"}
+        ]
+    ]
+}
+
+{
+"": [
+
+    "base": "tea",
+    "ingredients": [
+        ],
+    "effects": [
+        ]
+
+    ]
+}
+
+{
+"": [
+
+    "base": "tea",
+    "ingredients": [
+        ],
+    "effects": [
+        ]
+
+    ]
+}
+
+{
+"": [
+
+    "base": "tea",
+    "ingredients": [
+        ],
+    "effects": [
+        ]
+
+    ]
+}
