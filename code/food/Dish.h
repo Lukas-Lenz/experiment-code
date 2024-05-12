@@ -4,43 +4,62 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <map>
+#include <sstream>
+
+struct Ingredient {
+
+    const std::string name;
+    const std::vector<std::string> types;
+
+    bool isIn(const std::string type) const;
+
+};
+
+bool operator==(const Ingredient &lhs, const Ingredient &rhs);
+
+class IngredientList {
+
+public:
+
+    void add(const std::string ingredient, const int quantity, const bool exact);
+
+    // define iterator instead?
+    IngredientList &get();
+
+    bool fit(const Ingredient ingredient);
+    bool is_fulfilled() const;
+
+private:
+
+    std::vector<std::tuple<std::string, int, bool>> list;
+
+};
+
 
 class Dish {
 
 public:
 
-    bool check_recipe(const std::string tool, const std::vector<std::string> ingredients) const;
-    std::vector<std::shared_ptr<Dish>> getDerived() const;
+    Dish(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "");
+
+    bool check_recipe(const std::string tool, const std::vector<Ingredient> ingredients) const;
+    
+    std::vector<std::string> getDerived() const;
+    void addDerived(std::string dish);
+
+    std::string getBase() const;
+    std::string getName() const;
+    std::vector<std::string> getTools() const;
+    IngredientList getIngedientList() const;
 
 private:
-
-    using IngredientList = std::vector<std::tuple<std::string, std::string>>;
 
     const std::string name;
     const std::vector<std::string> tools;
     const IngredientList ingredients;
 
-    std::vector<std::shared_ptr<Dish>> derived_dishes;
-    std::shared_ptr<Dish> base_dish;
-
-};
-
-
-class Cooker {
-
-public:
-
-    std::vector<Dish> match_recipe(std::string tool, std::vector<std::string> ingredients) const;
-    void load_dishes(const std::string path);
-
-private:
-
-    Dish find_best_match(std::string tool, std::vector<std::string> ingredients, Dish base_dish) const;
-    
-    std::vector<Dish> root_recipes;
-    std::vector<Dish> recipe_book;
-    std::map<std::string, std::vector<std::string>> ingredient_dictionary;
+    std::vector<std::string> derived_dishes;
+    const std::string base_dish;
 
 };
 

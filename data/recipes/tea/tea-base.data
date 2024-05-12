@@ -1,0 +1,32 @@
+Tea {
+
+[base] root
+[tool] pot teaset
+[ingredients]
+1+ herb fruit spice,
+1+ water
+
+}
+
+Good Night Tea {
+
+[base] tea
+[ingredients]
+
+3+d lavender chamomille
+* herb fruit spice
+1+ water
+
+}
+
+Wild Tea {
+
+[base] tea
+
+[ingredients]
+
+1+ nettles
+1+ dandelions
+1+ water
+
+}

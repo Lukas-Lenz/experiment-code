@@ -1,7 +1,7 @@
 #ifndef HEADER_H_SOIL
 #define HEADER_H_SOIL
 
-#include "UpdateObject.h"
+#include "../core/UpdateObject.h"
 
 #include <map>
 #include <memory>

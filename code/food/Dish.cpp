@@ -1,6 +1,72 @@
 #include "Dish.h"
+#include <algorithm>
 
-bool Dish::check_recipe(const std::string tool, const std::vector<std::string> ingredients) const {
+bool operator==(const Ingredient &lhs, const Ingredient &rhs) {
+    
+    return lhs.name == rhs.name;
+
+}
+
+bool Ingredient::isIn(const std::string categories) const {
+
+    std::stringstream catstream (categories);
+
+    while(catstream.good()) {
+        std::string substr;
+        getline(catstream, substr, ',');
+        
+        if(substr == this->name) // exact match
+            return true;
+        
+        for(const std::string type : types) // category match
+            if(substr == type)
+                return true;
+    }
+
+    return false;
+
+}
+
+bool IngredientList::fit(const Ingredient ingredient) {
+
+    for(auto &triple : list) {
+
+        const std::string &categories = std::get<std::string>(triple);
+        int &quantity = std::get<int>(triple);
+        const bool &exact = std::get<bool>(triple);
+
+        if(ingredient.isIn(categories)) {
+
+            if(!exact || quantity > 0) {
+                quantity--;
+                return true;
+            }
+        
+        }
+    }
+
+    return false;
+
+}
+
+bool IngredientList::is_fulfilled() const {
+
+    for(auto &tuple : this->list) {
+
+        int quantity_required = std::get<int>(tuple);
+
+        if(quantity_required > 0)
+            return false;
+    }
+
+    return true;
+
+}
+
+Dish::Dish(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "") 
+: name{name}, tools{tools}, ingredients{ingredients}, base_dish{base}, derived_dishes{} {}
+
+bool Dish::check_recipe(const std::string tool, const std::vector<Ingredient> given_ingredients) const {
 
     bool correct_tool = false;
  
@@ -12,46 +78,39 @@ bool Dish::check_recipe(const std::string tool, const std::vector<std::string> i
         return false;        
 
     //create a tick-down list for ingredient specification
+    //TODO
+    //(name/category, #still needed, more allowed)
+    // [(water, 1, false)]
+    IngredientList potential_ingredients = this->ingredients;
+    
+    for(auto ingredient : given_ingredients) {
 
+        bool found = potential_ingredients.fit(ingredient);
+        
+        if(!found)
+            return false;
 
-}
-
-
-Dish Cooker::find_best_match(std::string tool, std::vector<std::string> ingredients, Dish base_dish) const {
-
-    for(auto dish : base_dish.getDerived())
-        if(dish->check_recipe(tool, ingredients))
-            return find_best_match(tool, ingredients, *dish);
-
-    return base_dish;
-
-}
-
-std::vector<Dish> Cooker::match_recipe(std::string tool, std::vector<std::string> ingredients) const {
-
-    std::vector<Dish> closest_matches;
-
-    for(Dish dish : root_recipes) {
-        if(dish.check_recipe(tool, ingredients)) {
-            Dish best = find_best_match(tool, ingredients, dish);
-            closest_matches.push_back(best);
-        }
     }
 
-    return closest_matches;
+    return potential_ingredients.is_fulfilled();
+
+}
+    
+std::vector<std::string> Dish::getDerived() const { return derived_dishes; }
+
+void Dish::addDerived(std::string dish) {
+
+    if(std::find(derived_dishes.begin(), derived_dishes.end(), dish) != derived_dishes.end())
+        return; //dish already registered for some reason
+
+    derived_dishes.push_back(dish);
 
 }
 
-void Cooker::load_dishes(const std::string path){
+std::string Dish::getBase() const { return base_dish; }
 
-    // load ingredient dictionary
+std::string Dish::getName() const { return name; }
 
-    // read in recipe
+std::vector<std::string> Dish::getTools() const { return tools; }
 
-    // save "root" dishes
-
-    // map where each dish saves the dishes that consider it a base
-    std::map<std::string, std::vector<std::string>> derived_recipes;
-
-
-}
+IngredientList Dish::getIngedientList() const { return ingredients; }

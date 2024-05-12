@@ -1,6 +1,10 @@
 #ifndef HEADER_H_STATE
 #define HEADER_H_STATE
 
+#include <vector>
+
+#include "../farm/Soil.h"
+
 class Time {
 
     public:

@@ -1,16 +1,16 @@
-#include "State.cpp"
+#include "State.h"
 
 #include <chrono>
 
 using clock = std::chrono::steady_clock;
 
-using MS_PER_UPDATE = 300;
-using UPDATES_PER_CLOCK_TICK = 200;
+const int MS_PER_UPDATE = 300;
+const int UPDATES_PER_CLOCK_TICK = 200;
 
 
 State captureState() {
 
-    return State{};
+    return State{0};
 
 }
 
