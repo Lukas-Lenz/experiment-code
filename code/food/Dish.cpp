@@ -13,7 +13,7 @@ bool Ingredient::isIn(const std::string categories) const {
 
     while(catstream.good()) {
         std::string substr;
-        getline(catstream, substr, ',');
+        getline(catstream, substr, '/');
         
         if(substr == this->name) // exact match
             return true;
@@ -24,6 +24,15 @@ bool Ingredient::isIn(const std::string categories) const {
     }
 
     return false;
+
+}
+
+IngredientList::IngredientList() {}
+    
+IngredientList::IngredientList(std::vector<std::string> ingredient_list) {
+
+    for(std::string ingr : ingredient_list)
+        this->add(ingr, 1, false);
 
 }
 

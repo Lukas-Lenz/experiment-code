@@ -21,7 +21,10 @@ class IngredientList {
 
 public:
 
-    void add(const std::string ingredient, const int quantity, const bool exact);
+    IngredientList();
+    IngredientList(std::vector<std::string> ingredient_list);
+
+    void add(const std::string ingredient, const int quantity = 1, const bool exact = false);
 
     // define iterator instead?
     IngredientList &get();

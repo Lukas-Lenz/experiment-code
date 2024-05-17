@@ -48,3 +48,9 @@ void Cooker::add(const std::string name, const std::vector<std::string> tools, c
     recipes.at(base).addDerived(name);
 }
 
+void Cooker::add_from_data(const std::string name, const std::string tools, const std::string ingredients, const std::string base) {
+
+    
+
+}
+
