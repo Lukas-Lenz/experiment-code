@@ -7,6 +7,9 @@ bool operator==(const Ingredient &lhs, const Ingredient &rhs) {
 
 }
 
+Ingredient::Ingredient(const std::string name, const std::vector<std::string> types)
+    : name{name}, types{types} {}
+
 bool Ingredient::isIn(const std::string categories) const {
 
     std::stringstream catstream (categories);

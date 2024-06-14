@@ -11,6 +11,8 @@ struct Ingredient {
     const std::string name;
     const std::vector<std::string> types;
 
+    Ingredient(const std::string name, const std::vector<std::string> types);
+
     bool isIn(const std::string type) const;
 
 };

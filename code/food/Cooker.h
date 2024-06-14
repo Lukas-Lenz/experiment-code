@@ -16,9 +16,8 @@ public:
     void load_dishes(const std::string path);
 
     //void add(const std::string name, const Dish dish);
-    void add(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "");
+    void add_recipe(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "");
     void add_from_data(const std::string name, const std::string tools, const std::string ingredients, const std::string base);
-
 
 private:
 
@@ -26,7 +25,6 @@ private:
     
     std::vector<std::string> root_keys;
     std::map<std::string, Dish> recipes;
-    std::map<std::string, std::vector<std::string>> ingredient_dictionary;
 
 };
 
