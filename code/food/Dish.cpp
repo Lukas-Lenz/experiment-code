@@ -75,8 +75,8 @@ bool IngredientList::is_fulfilled() const {
 
 }
 
-Dish::Dish(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "") 
-: name{name}, tools{tools}, ingredients{ingredients}, base_dish{base}, derived_dishes{} {}
+Dish::Dish(const std::string name_, const std::vector<std::string> tools_, const IngredientList ingredients_, const std::string base_ = "") 
+: name{name_}, tools{tools_}, ingredients{ingredients_}, base_dish{base_}, derived_dishes{} {}
 
 bool Dish::check_recipe(const std::string tool, const std::vector<Ingredient> given_ingredients) const {
 

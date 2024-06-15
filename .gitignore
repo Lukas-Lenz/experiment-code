@@ -1,2 +1,8 @@
 
 /.vs
+.vscode/
+code/.vscode/
+code/build/
+code/food/test.obj
+code/food/test.pdb
+code/food/vc140.pdb

@@ -22,11 +22,11 @@ int main() {
 
     //std::string fac_tea_string = "'fennel anise caraway tea' tools:";
 
-    cooker.add("Tea", {"pot", "teaset"}, tea_ingr, "");
-    cooker.add("Fennel-Anise-Caraway Tea", {"pot", "teaset"}, fac_tea_ingr, "tea");
+    cooker.add_recipe("Tea", {"pot", "teaset"}, tea_ingr, "");
+    cooker.add_recipe("Fennel-Anise-Caraway Tea", {"pot", "teaset"}, fac_tea_ingr, "tea");
 
-    IngredientList fac_tea_test {{"water", "fennel", "water", "anise", "anise", "caraway"}};
-    IngredientList herbal_tea_test {{"water", "fennel", "caraway"}};
+    IngredientList fac_tea_list {{"water", "fennel", "water", "anise", "anise", "caraway"}};
+    IngredientList herbal_tea_list {{"water", "fennel", "caraway"}}; 
 
     Dish fac_test = cooker.match_recipe("teaset", {"water", "fennel", "water", "anise", "anise", "caraway"});
     Dish tea_test = cooker.match_recipe("teaset", {"water", "fennel", "water", "anise", "anise", "caraway"});
@@ -34,7 +34,7 @@ int main() {
     Dish fac_test_2 = cooker.match_recipe("teaset", {"water", "fennel", "water", "anise", "anise", "caraway"});
 
 
-    std::cout << "1 fennel, 1 caraway, 2 anise, 2 water makes: " << dish.getName() << std::newline;
+    std::cout << "1 fennel, 1 caraway, 2 anise, 2 water makes: " << fac_test.getName() << std::endl;
 
 
     return 0;
