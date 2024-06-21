@@ -75,8 +75,10 @@ bool IngredientList::is_fulfilled() const {
 
 }
 
-Dish::Dish(const std::string name_, const std::vector<std::string> tools_, const IngredientList ingredients_, const std::string base_ = "") 
-: name{name_}, tools{tools_}, ingredients{ingredients_}, base_dish{base_}, derived_dishes{} {}
+Dish::Dish(std::string name_, std::vector<std::string> tools_, IngredientList ingredients_, Dish *base_) 
+: name{name_}, tools{tools_}, ingredients{ingredients_}, base_dish{base_}, derived_dishes{} {
+    base_dish->addDerived(this);
+}
 
 bool Dish::check_recipe(const std::string tool, const std::vector<Ingredient> given_ingredients) const {
 
@@ -108,9 +110,9 @@ bool Dish::check_recipe(const std::string tool, const std::vector<Ingredient> gi
 
 }
     
-std::vector<std::string> Dish::getDerived() const { return derived_dishes; }
+std::vector<Dish*> Dish::getDerived() const { return derived_dishes; }
 
-void Dish::addDerived(std::string dish) {
+void Dish::addDerived(Dish* dish) {
 
     if(std::find(derived_dishes.begin(), derived_dishes.end(), dish) != derived_dishes.end())
         return; //dish already registered for some reason
@@ -119,7 +121,7 @@ void Dish::addDerived(std::string dish) {
 
 }
 
-std::string Dish::getBase() const { return base_dish; }
+Dish * Dish::getBase() const { return base_dish; }
 
 std::string Dish::getName() const { return name; }
 

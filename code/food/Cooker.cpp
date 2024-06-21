@@ -1,6 +1,6 @@
 #include "Cooker.h"
 
-Dish Cooker::find_best_match(std::string tool, std::vector<std::string> ingredients, Dish base_dish) const {
+Dish Cooker::find_best_match(const std::string tool, const std::vector<Ingredient> ingredients, const Dish &base_dish) const {
 
     for(auto dish : base_dish.getDerived())
         if(dish->check_recipe(tool, ingredients))
@@ -10,18 +10,29 @@ Dish Cooker::find_best_match(std::string tool, std::vector<std::string> ingredie
 
 }
 
-std::vector<Dish> Cooker::match_recipe(std::string tool, std::vector<std::string> ingredients) const {
+Dish Cooker::match_recipe(std::string tool, const std::vector<Ingredient> ingredients) const {
 
     std::vector<Dish> closest_matches;
 
-    for(Dish dish : root_recipes) {
-        if(dish.check_recipe(tool, ingredients)) {
-            Dish best = find_best_match(tool, ingredients, dish);
+    for(Dish* dish : this->root_recipes) {
+        if(dish->check_recipe(tool, ingredients)) {
+            Dish best = find_best_match(tool, ingredients, *dish);
             closest_matches.push_back(best);
         }
     }
 
-    return closest_matches;
+    Dish result = getFailDish();
+    
+    if(!closest_matches.empty())
+        result = closest_matches.at(0);
+
+    return result;
+
+}
+
+Dish Cooker::getFailDish() {
+
+    return failDish;
 
 }
 
@@ -39,7 +50,7 @@ void Cooker::load_dishes(const std::string path){
 
 }
 
-void Cooker::add(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "") {
+void Cooker::add(const std::string name, const std::vector<std::string> tools, const std::vector<Ingredient> ingredients, const std::string base = "") {
 
     recipes.emplace(std::make_pair(name, Dish {name, tools, ingredients, base}));
 

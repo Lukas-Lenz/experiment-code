@@ -12,7 +12,7 @@ class Cooker {
 
 public:
 
-    Dish match_recipe(std::string tool, std::vector<std::string> ingredients) const;
+    Dish match_recipe(const std::string tool, const std::vector<Ingredient> ingredients) const;
     void load_dishes(const std::string path);
 
     //void add(const std::string name, const Dish dish);
@@ -21,10 +21,15 @@ public:
 
 private:
 
-    Dish find_best_match(std::string tool, std::vector<std::string> ingredients, Dish base_dish) const;
+    Dish find_best_match(const std::string tool, const std::vector<Ingredient> ingredients, const Dish &base_dish) const; // helper function for recursive calls of match_recipe
     
-    std::vector<std::string> root_keys;
-    std::map<std::string, Dish> recipes;
+    std::vector<Dish *> root_recipes;
+    std::vector<Dish> recipes;
+
+    Dish getFailDish();
+
+    //std::vector<std::string> root_keys;
+    //std::map<std::string, Dish> recipes;
 
 };
 

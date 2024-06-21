@@ -45,26 +45,26 @@ class Dish {
 
 public:
 
-    Dish(const std::string name, const std::vector<std::string> tools, const IngredientList ingredients, const std::string base = "");
+    Dish(std::string name, std::vector<std::string> tools, IngredientList ingredients, Dish *base = nullptr);
 
     bool check_recipe(const std::string tool, const std::vector<Ingredient> ingredients) const;
     
-    std::vector<std::string> getDerived() const;
-    void addDerived(std::string dish);
+    std::vector<Dish *> getDerived() const;
+    void addDerived(Dish *derived);
 
-    std::string getBase() const;
+    Dish* getBase() const;
     std::string getName() const;
     std::vector<std::string> getTools() const;
     IngredientList getIngedientList() const;
 
 private:
 
-    const std::string name;
-    const std::vector<std::string> tools;
-    const IngredientList ingredients;
+    std::string name;
+    std::vector<std::string> tools;
+    IngredientList ingredients;
 
-    std::vector<std::string> derived_dishes;
-    const std::string base_dish;
+    std::vector<Dish*> derived_dishes;
+    Dish* base_dish;
 
 };
 
